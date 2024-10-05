@@ -1,0 +1,66 @@
+<!-- templates/home.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-white d-flex align-items-center">
+    <!-- Overlay -->
+    <div class="overlay bg-dark opacity-50 position-absolute top-0 start-0 w-100 h-100"></div>
+    <!-- Content -->
+    <div class="container position-relative text-center">
+        <h1 class="display-3 fw-bold">Welcome to HealthCareAI Pro</h1>
+        <p class="lead mb-4">Empowering Hospitals with Advanced Patient Data Management and AI-Powered Solutions</p>
+        <a href="{{ url_for('upload') }}" class="btn btn-light btn-lg rounded-pill">Get Started</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+    <div class="container">
+        <div class="row text-center">
+            <!-- Feature 1: Data Management -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='images/data_management_icon.png') }}" alt="Data Management Icon" class="mb-3" style="width: 60px;">
+                        <h5 class="card-title">Comprehensive Data Management</h5>
+                        <p class="card-text">Organize, store, and retrieve patient data seamlessly from multiple sources including EHRs, wearables, and lab results.</p>
+                        <a href="{{ url_for('upload') }}" class="btn btn-primary mt-3">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 2: AI-Powered Analytics -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='images/ai_analytics_icon.png') }}" alt="AI Analytics Icon" class="mb-3" style="width: 60px;">
+                        <h5 class="card-title">AI-Powered Analytics</h5>
+                        <p class="card-text">Leverage machine learning and natural language processing to gain insights, predict health trends, and generate comprehensive reports.</p>
+                        <a href="{{ url_for('analyze') }}" class="btn btn-primary mt-3">Discover Analytics</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 3: Appointment Booking -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='images/appointment_booking_icon.png') }}" alt="Appointment Booking Icon" class="mb-3" style="width: 60px;">
+                        <h5 class="card-title">Seamless Appointment Booking</h5>
+                        <p class="card-text">Utilize our AI-driven agent to effortlessly schedule, manage, and confirm appointments, enhancing patient experience and operational efficiency.</p>
+                        <a href="{{ url_for('chat_interface') }}" class="btn btn-primary mt-3">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Transform Your Hospital Operations Today</h2>
+        <p class="mb-4">Join countless other hospitals in leveraging cutting-edge technology to enhance patient care and streamline administrative tasks.</p>
+        <a href="{{ url_for('upload') }}" class="btn btn-light btn-lg rounded-pill">Get Started</a>
+    </div>
+</section>
+{% endblock %}

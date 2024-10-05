@@ -1,0 +1,11 @@
+Flask
+Flask_SQLAlchemy
+OpenAI
+pandas
+scikit-learn
+matplotlib
+seaborn
+plotly
+python-dotenv
+Flask_SocketIO 
+Flask_Cors

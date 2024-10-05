@@ -1,0 +1,130 @@
+<!-- templates/chat.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<section class="chat-section py-5">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <h2 class="fw-bold">Appointment Booking Assistant</h2>
+                <p class="text-muted">Interact with our AI-powered assistant to schedule your appointments seamlessly.</p>
+            </div>
+        </div>
+        
+        <!-- Chat Window Card -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body d-flex flex-column">
+                        <!-- Chat Display Area -->
+                        <div id="chat-window" class="flex-grow-1 mb-3 p-3 bg-light rounded" style="overflow-y: auto; height: 400px;">
+                            <div class="mb-3">
+                                <strong>Assistant:</strong> Hello! How can I assist you today?
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Input Form -->
+                        <form id="chat-form" class="d-flex">
+                            <input type="text" id="user-input" class="form-control me-2" placeholder="Type your message here..." required>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap Toast for Notifications (Optional) -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Appointment booked successfully!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('chat-form');
+    const chatWindow = document.getElementById('chat-window');
+    const toastEl = document.getElementById('toast');
+    // const toast = new bootstrap.Toast(toastEl);
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const userInput = document.getElementById('user-input').value.trim();
+        if (userInput === '') return;
+        appendMessage('You', userInput, 'user-message');
+        document.getElementById('user-input').value = '';
+
+        // Scroll to bottom
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+        try {
+            // Show typing indicator
+            appendMessage('Assistant', 'Typing...', 'assistant-message typing-indicator');
+
+            const response = await fetch('{{ url_for("chat") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput })
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+            removeTypingIndicator();
+            appendMessage('Assistant', data.reply, 'assistant-message');
+            console.log(data.reply);
+            // Scroll to bottom
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            // Optionally, show a toast notification if appointment is booked
+            // if (data.appointment_booked) {
+            //     toast.show();
+            // }
+
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            removeTypingIndicator();
+            appendMessage('Assistant', "I'm sorry, there was an error processing your request. Please try again later.", 'assistant-message');
+        }
+    });
+
+    function appendMessage(sender, message, className) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('mb-3', 'd-flex');
+
+        if (className === 'user-message') {
+            messageElement.classList.add('justify-content-end');
+            messageElement.innerHTML = `
+                <div class="message user-message bg-primary text-white p-2 rounded">
+                    <strong>You:</strong> ${message}
+                </div>
+            `;
+        } else if (className === 'assistant-message') {
+            messageElement.classList.add('justify-content-start');
+            messageElement.innerHTML = `
+                <div class="message assistant-message bg-secondary text-white p-2 rounded">
+                    <strong>Assistant:</strong> ${message}
+                </div>
+            `;
+        }
+
+        chatWindow.appendChild(messageElement);
+    }
+
+    function removeTypingIndicator() {
+        const typingElements = document.querySelectorAll('.typing-indicator');
+        typingElements.forEach(el => el.remove());
+    }
+</script>
+{% endblock %}

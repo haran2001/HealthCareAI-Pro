@@ -1,0 +1,49 @@
+<!-- templates/reports.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<section class="report-section py-5">
+    <div class="container">
+        <!-- Report Header -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <h2 class="fw-bold">Medical Report</h2>
+                <p class="text-muted">Detailed medical information for {{ patient.name }}</p>
+            </div>
+        </div>
+        <!-- Patient Information Card -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Patient Information</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Name:</strong> {{ patient.name }}</li>
+                            <li class="list-group-item"><strong>Age:</strong> {{ patient.age }}</li>
+                            <li class="list-group-item"><strong>Gender:</strong> {{ patient.gender }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Medical Report Card -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4">Medical Report</h4>
+                        <p class="card-text">{{ report }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Action Buttons -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8 text-center">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary me-2">Back to Dashboard</a>
+                <button onclick="window.print()" class="btn btn-primary">Print Report</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

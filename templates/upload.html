@@ -1,0 +1,69 @@
+<!-- templates/upload.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<section class="upload-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Upload Form Card -->
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <h2 class="mb-4 text-center">Upload Patient Data</h2>
+                        <form method="POST" action="{{ url_for('upload') }}">
+                            <!-- Name Field -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name<span class="text-danger">*</span>:</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter patient's full name" required>
+                            </div>
+                            
+                            <!-- Age Field -->
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Age<span class="text-danger">*</span>:</label>
+                                <input type="number" class="form-control" id="age" name="age" placeholder="Enter patient's age" min="0" required>
+                            </div>
+                            
+                            <!-- Gender Field -->
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">Gender<span class="text-danger">*</span>:</label>
+                                <select class="form-select" id="gender" name="gender" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Medical History Field -->
+                            <div class="mb-3">
+                                <label for="medical_history" class="form-label">Medical History:</label>
+                                <textarea class="form-control" id="medical_history" name="medical_history" rows="3" placeholder="Provide any relevant medical history"></textarea>
+                            </div>
+                            
+                            <!-- Lab Results Field -->
+                            <div class="mb-3">
+                                <label for="lab_results" class="form-label">Lab Results (JSON):</label>
+                                <textarea class="form-control" id="lab_results" name="lab_results" rows="3" placeholder='e.g., { "cholesterol": "190 mg/dL", "blood_pressure": "120/80 mmHg" }'></textarea>
+                                <div class="form-text">Please ensure the JSON is properly formatted.</div>
+                            </div>
+                            
+                            <!-- Wearable Data Field -->
+                            <div class="mb-4">
+                                <label for="wearable_data" class="form-label">Wearable Data (JSON):</label>
+                                <textarea class="form-control" id="wearable_data" name="wearable_data" rows="3" placeholder='e.g., { "steps": 7500, "heart_rate": 72 }'></textarea>
+                                <div class="form-text">Please ensure the JSON is properly formatted.</div>
+                            </div>
+                            
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Upload Data</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- End of Upload Form Card -->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
