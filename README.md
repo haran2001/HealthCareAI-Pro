@@ -62,5 +62,19 @@ HealthCare Pro is a comprehensive web application designed to streamline patient
 
    ```bash
    git clone https://github.com/haran2001/HealthCareAI-Pro.git
+   ```
+
+2. **Change directory**
+
+   ```
    cd HealthCareAI-Pro
+   ```
+
+3. **Install Packages**
+   ```
+   pip install -r requirements.txt
+   ```
+4. **Run app**
+   ```
+   python app.py
    ```
