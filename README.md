@@ -1,6 +1,6 @@
 # HealthCare Pro
 
-![HealthCare Pro Logo](static/images/logo.png)
+![HealthCareAI Pro Logo](static/images/logo.png)
 
 HealthCare Pro is a comprehensive web application designed to streamline patient data management, data visualization, report generation, and appointment booking in a hospital setting. Leveraging modern technologies like Flask, Bootstrap 5, and Plotly, HealthCare Pro offers an intuitive and efficient platform for healthcare professionals to enhance patient care and administrative tasks.
 
@@ -20,18 +20,18 @@ HealthCare Pro is a comprehensive web application designed to streamline patient
 
 1. **Patient Data Upload**
    - Upload and manage patient information, including personal details, medical history, lab results, and wearable data.
-2. **Data Visualization**
-   - Generate interactive graphs and charts to visualize patient data using Plotly.
-3. **Medical Report Generation**
+2. **Medical Report Generation**
    - Create detailed medical reports for individual patients with options to print or download.
-4. **Dashboard**
+3. **Dashboard**
    - Overview of key statistics such as total patients, average age, and a comprehensive patient list with actionable options.
-5. **Appointment Booking Assistant**
+4. **Appointment Booking Assistant**
    - AI-powered chat interface to assist patients in booking appointments seamlessly.
-6. **Responsive Design**
+5. **Responsive Design**
    - Fully responsive and mobile-friendly interface using Bootstrap 5.
-7. **Accessibility**
+6. **Accessibility**
    - Designed with accessibility in mind, ensuring usability for all users.
+7. **Data Visualization (WIP)**
+   - Generate interactive graphs and charts to visualize patient data using Plotly.
 
 ## Technologies Used
 

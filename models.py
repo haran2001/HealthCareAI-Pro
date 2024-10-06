@@ -1,4 +1,3 @@
-# models.py
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -14,6 +13,7 @@ class Patient(db.Model):
     lab_results = db.Column(db.Text, nullable=True)  # JSON string
     wearable_data = db.Column(db.Text, nullable=True)  # JSON string
     appointments = db.relationship("Appointment", backref="patient", lazy=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
         return f"<Patient {self.name}>"
